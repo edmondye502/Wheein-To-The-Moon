@@ -64,7 +64,9 @@ def get_price(ticker):
   if data:
     if data[0]['quoteType'] == 'MUTUALFUND':
       return False
-    
+    if 'regularMarketPrice' not in data[0]:
+      return False
+
     if 'displayName' in data[0]:
       displayName = data[0]['displayName']
     elif 'longName' in data[0]:

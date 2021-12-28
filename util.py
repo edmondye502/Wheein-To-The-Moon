@@ -44,3 +44,6 @@ def format_price(price):
 
 def format_percent(change):
   return '{:,.3f}'.format(change)
+
+def get_symbol_lists(msg_data):
+  return msg_data.split('/')

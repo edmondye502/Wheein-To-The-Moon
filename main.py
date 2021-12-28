@@ -18,6 +18,9 @@ def get_price_message(msg_data):
 
   if not price_message:
     price_message = stock.get_price(msg_data)
+  
+  if not price_message:
+    price_message = crypto.get_specific_price(msg_data)
 
   if not price_message:
     price_message = '{0} is not supported!'.format(msg_data)
@@ -47,7 +50,10 @@ async def on_message(message):
       stock_trending = stock.get_trending()
       output_message = stock_trending + crypto_trending
     else:
-      output_message = get_price_message(msg_data)
+      msg_data_list = util.get_symbol_lists(msg_data)
+      output_message = ''
+      for symbol in msg_data_list:
+        output_message += get_price_message(symbol.strip()) + "\n"
     
     await message.channel.send(output_message)
 
