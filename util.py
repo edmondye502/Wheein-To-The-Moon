@@ -15,7 +15,7 @@ def is_msg_data_valid(msg_data):
 # Output: string output message
 # ----------------------------------------------------------------------------------
 def get_output_string(displayName, price, change):
-  return 'The current price of {0} is {1}'.format(displayName, get_price_string(price, change))
+  return '**{0}** is {1}'.format(displayName, get_price_string(price, change))
 
 # ----------------------------------------------------------------------------------
 # Get price string $xx.xx (x% chart_emoji)
@@ -27,7 +27,7 @@ def get_price_string(price, change):
     chartSymbol = ':chart_with_upwards_trend:'
   else:
     chartSymbol = ':chart_with_downwards_trend:'
-  return '${0} ({1}% {2})'.format(format_price(price), format_percent(change), chartSymbol)
+  return '**${0}** ({1}% {2})'.format(format_price(price), format_percent(change), chartSymbol)
 
 def format_price(price):
   if price >= 1:
