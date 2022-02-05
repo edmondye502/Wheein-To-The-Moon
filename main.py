@@ -40,8 +40,13 @@ async def on_message(message):
     return
 
   msg = message.content
-  if msg.startswith(config.MSG_PREFIX):
-    msg_data = msg[len(config.MSG_PREFIX):].lstrip()
+  if msg.startswith(tuple(config.MSG_PREFIXES)):
+    prefix = msg.split()[0]
+    msg_data = msg[len(prefix):].lstrip()
+
+    if msg_data in config.GROUPS:
+      msg_data = config.GROUPS.get(msg_data)
+
     if not util.is_msg_data_valid(msg_data):
       return
 
@@ -55,7 +60,8 @@ async def on_message(message):
       for symbol in msg_data_list:
         output_message += get_price_message(symbol.strip()) + "\n"
     
-    await message.channel.send(output_message)
+    await message.channel.send(output_message)    
+
 
 keep_alive()
 client.run(os.environ['BOT_TOKEN'])
