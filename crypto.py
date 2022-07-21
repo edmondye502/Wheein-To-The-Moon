@@ -14,7 +14,7 @@ def get_price(crypto):
   for i in range(len(data)):
     if data[i]['id'] == crypto.lower() or data[i]['symbol'] == crypto.lower() or data[i]['name'] == crypto.title():
       price = data[i]['current_price']
-      return util.get_output_string(data[i]['name'], price, data[i]['price_change_percentage_24h'])
+      return util.get_output_string(data[i]['name'], price, data[i]['price_change_percentage_24h'], 0, 0)
 
   return False
 
@@ -22,7 +22,7 @@ def get_specific_price(crypto):
   response = requests.get(config.CRYPTO_URL + 'coins/' + crypto.lower())
   data = response.json()
   if data and 'error' not in data:
-    return util.get_output_string(data['name'], data['market_data']['current_price']['usd'], data['market_data']['price_change_percentage_24h'])
+    return util.get_output_string(data['name'], data['market_data']['current_price']['usd'], data['market_data']['price_change_percentage_24h'], 0, 0)
   return False
 
 # ----------------------------------------------------------------------------------

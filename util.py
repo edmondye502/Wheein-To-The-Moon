@@ -14,8 +14,9 @@ def is_msg_data_valid(msg_data):
 # Input: name, price, and change to be shown in the message
 # Output: string output message
 # ----------------------------------------------------------------------------------
-def get_output_string(displayName, price, change):
-  return '**{0}** is {1}'.format(displayName, get_price_string(price, change))
+def get_output_string(displayName, price, change, afterPrice, afterChange):
+  afterHour = '. After hours: ' + get_price_string(afterPrice, afterChange) if afterPrice > 0 else ''
+  return '**{0}** is {1}{2}'.format(displayName, get_price_string(price, change), afterHour)
 
 # ----------------------------------------------------------------------------------
 # Get price string $xx.xx (x% chart_emoji)

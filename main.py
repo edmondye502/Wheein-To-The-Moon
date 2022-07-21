@@ -7,7 +7,6 @@ import stock
 import util
 from keep_alive import keep_alive
 
-
 # ----------------------------------------------------------------------------------
 # Get output message 
 # Input: msg_data retrieved from users discord message; `$moon msg_data`
@@ -26,7 +25,6 @@ def get_price_message(msg_data):
     price_message = '{0} is not supported!'.format(msg_data)
   
   return price_message
-
 
 client = discord.Client()
 
@@ -62,7 +60,5 @@ async def on_message(message):
     
     await message.channel.send(output_message)    
 
-
 keep_alive()
 client.run(os.environ['BOT_TOKEN'])
-

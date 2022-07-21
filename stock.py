@@ -75,6 +75,14 @@ def get_price(ticker):
       displayName = data[0]['shortName']
     else:
       displayName = data[0]['symbol']
-    return util.get_output_string(displayName, data[0]['regularMarketPrice'], data[0]['regularMarketChangePercent'])
+
+    if 'postMarketPrice' in data[0]:
+      postMarketPrice = data[0]['postMarketPrice']
+      postMarketChange = data[0]['postMarketChange']
+    else:
+      postMarketPrice = 0
+      postMarketChange = 0
+    
+    return util.get_output_string(displayName, data[0]['regularMarketPrice'], data[0]['regularMarketChangePercent'], postMarketPrice, postMarketChange)
   return False
   
